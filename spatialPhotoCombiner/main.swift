@@ -61,6 +61,14 @@ struct SpatialPhotoCombiner: ParsableCommand {
 			0, 0, 1
 		]
 
+		let rotationMatrix: [CGFloat] = [
+			1, 0, 0,
+			0, 1, 0,
+			0, 0, 1
+		]
+
+		let positionMatrix: [CGFloat] = [ 0, 0, 0 ]
+
 		let properties = [
 			kCGImagePropertyGroups: [
 				kCGImagePropertyGroupIndex: 0,
@@ -71,6 +79,11 @@ struct SpatialPhotoCombiner: ParsableCommand {
 			kCGImagePropertyHEIFDictionary: [
 				kIIOMetadata_CameraModelKey: [
 					kIIOCameraModel_Intrinsics: cameraIntrinsics as CFArray,
+				],
+				kIIOMetadata_CameraExtrinsicsKey: [
+					kIIOCameraExtrinsics_CoordinateSystemID: 0 as CGFloat,
+					kIIOCameraExtrinsics_Position: positionMatrix as CFArray,
+					kIIOCameraExtrinsics_Rotation: rotationMatrix as CFArray,
 				]
 			]
 		]
