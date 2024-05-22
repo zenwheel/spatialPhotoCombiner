@@ -24,6 +24,8 @@ struct SpatialPhotoCombiner: ParsableCommand {
 	@Option(name: .customLong("hfov"), help: "Horizontal field-of-view (in degrees).")
 	var hFOV = 55.0
 
+	static let configuration = CommandConfiguration(commandName: "spatialPhotoCombiner")
+
 	func run() throws {
 		guard let leftImg = loadImage(at: leftImagePath) else {
 			throw ValidationError("The left image could not be loaded.")
